@@ -1,0 +1,17 @@
+<% user_repos.each_page do |user_repo| %>
+    <% user_repo.each do |r| %>
+        <div class="row">
+          <div class="github-repos">
+            <div class="col-md-9">
+              <h4><a href="<%= r.html_url %>" target="_blank"><%= r.name %></a></h4>
+              <p><%= r.description %></p>
+            </div>
+            <div class="col-md-3">
+              <span class="label label-primary"><%= r.watchers %> Watchers</span>
+              <span class="label label-success"><%= r.forks %> Forks</span>
+            </div>
+          </div>
+        </div>
+        <hr>
+    <% end %>
+<% end %>
