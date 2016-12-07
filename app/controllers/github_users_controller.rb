@@ -3,11 +3,13 @@ class GithubUsersController < ApplicationController
   end
 
   def search
-    client_id = ENV["CLIENT_ID"]
-    client_secret = ENV["CLIENT_SECRET"]
-    github = Github.new client_id: client_id, client_secret: client_secret
-    @user = github.users.get user: params[:user]
-    @user_repos = github.repos.list user: params[:user]
+    id = ENV["CLIENT_ID"]
+    secret = ENV["CLIENT_SECRET"]
+    u = params[:user]
+    user_uri = "https://api.github.com/users/#{u}?client_id=#{id}&client_secret=#{secret}"
+    repo_uri = "https://api.github.com/users/#{u}/repos?client_id=#{id}&client_secret=#{secret}"
+    @user = JSON.load open(user_uri)
+    @user_repos = JSON.load open(repo_uri)
 
     respond_to do |format|
       format.html { redirect_to root_path}
