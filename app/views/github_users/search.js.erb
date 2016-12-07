@@ -1,1 +1,13 @@
-alert("<%= @test %>");
+$("#user").val("");
+$("#body-partial").html("<%= j render 'body' %>");
+$("#name").html("<%= @user['name'] %>");
+$("#github-avatar").attr("src", "<%= @user['avatar_url'] %>");
+$("#public-repos").html("<%= @user['public_repos'] %>");
+$("#public-gists").html("<%= @user['public_gists'] %>");
+$("#github-followers").html("<%= @user['followers'] %>");
+$("#github-following").html("<%= @user['following'] %>");
+$("#username").html("<%= @user['login'] %>");
+$("#user-location").html("<%= @user['location'] %>");
+$("#user-email").html("<%= @user['email'] %>");
+$("#user-blog").html("<%= @user['blog'] %>");
+$("#user-created-at").html("<%= @user['created_at'] %>");
