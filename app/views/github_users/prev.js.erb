@@ -1,4 +1,3 @@
-$("#user").val("");
-$("#body-partial").html("<%= j render 'body', user: @user %>");
+$("html, body").animate({ scrollTop: 0 }, "slow");
 $("#github-repos").html("<%= j render 'repos', user_repos: @user_repos %>");
 $("#pagination").html("<%= j render 'pagination', current_page: @current_page, total_pages: @total_pages %>");
