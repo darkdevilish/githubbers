@@ -3,6 +3,8 @@ class GithubUsersController < ApplicationController
   @@user
   @@total_pages
 
+  before_action :total_pages, except: [:index, :search]
+
   def index
     @@current_page = 1
   end
@@ -24,7 +26,6 @@ class GithubUsersController < ApplicationController
   end
 
   def next
-    @total_pages = @@total_pages
     if @@current_page == @@total_pages
     else
       page = @@current_page + 1
@@ -33,7 +34,6 @@ class GithubUsersController < ApplicationController
   end
 
   def prev
-    @total_pages = @@total_pages
     if @@current_page == 1
     else
       page = @@current_page - 1
@@ -42,7 +42,6 @@ class GithubUsersController < ApplicationController
   end
 
   def page
-    @total_pages = @@total_pages
     paginate params[:page].to_i
   end
 
@@ -69,6 +68,10 @@ private
       format.html { redirect_to root_path }
       format.js
     end
+  end
+
+  def total_pages
+    @total_pages = @@total_pages
   end
 
 end
